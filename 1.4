@@ -1,0 +1,27 @@
+
+public class Solution {
+    
+    public static void main(String[] args) {
+        System.out.println(new Solution().isPalindromicPermutation("vaicav"));
+    }
+    // # 106,121,134,136
+    public boolean isPalindromicPermutation(String s){
+        s = s.replaceAll(" ","");
+        HashMap<Character, Integer> hm =new HashMap<>();
+        
+        int oddCount=0;
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+            hm.put(ch,hm.containsKey(ch)?hm.get(ch)+1 : 1);
+            if(hm.get(ch)%2==0){
+                oddCount--;
+            }else{
+                oddCount++;
+            }
+        }
+        System.out.println(hm);
+        int oddLimit = s.length()%2;
+        return (oddLimit==1 && oddCount==1) || (oddLimit==0 && oddCount==0);
+    }
+    
+}
