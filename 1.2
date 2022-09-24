@@ -1,0 +1,28 @@
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(new Solution().isPermutation("vaibhav","vvvaihb"));
+    }
+}
+//# 1, 84, 122, 131
+class Solution{
+    public boolean isPermutation(String a, String b){
+        HashMap<Character,Integer> hm = new HashMap<>();
+        int aLen = a.length(), bLen=b.length();
+        
+        if(aLen!=bLen)
+            return false;
+        for(int i=0;i<aLen;i++){
+            char ac = a.charAt(i),bc=b.charAt(i);
+            
+            if(hm.containsKey(ac)) { hm.put(ac,hm.get(ac)+1); } else { hm.put(ac,1);}
+            if(hm.containsKey(bc)) { hm.put(bc,hm.get(bc)-1); } else {hm.put(bc,-1);}
+            
+            if(hm.get(ac)==0)
+                hm.remove(ac);
+            if(ac!=bc && hm.get(bc)==0)
+                hm.remove(bc);
+        }
+        return hm.isEmpty();
+    }
+}
