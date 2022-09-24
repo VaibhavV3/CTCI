@@ -1,0 +1,27 @@
+// "static void main" must be defined in a public class.
+public class Solution {
+    public static void main(String[] args) {
+        String s = "Vaibhav Walekar is good Guy";
+        String t = "    ";
+        System.out.println(new Solution().URLify((s+t).toCharArray(),s.length()));
+    }
+    // # 53,118
+    
+    public String URLify(char str[], int k){
+        k--;
+        for(int i=str.length-1;i>=0;){
+            if(str[k]!=' '){
+                str[i]=str[k];
+                i--;
+            }else{
+                str[i]='0';
+                str[i-1]='2';
+                str[i-2]='%';
+                i-=3;
+            }
+            k--;
+        }
+        return new String(str);
+    }
+    
+}
